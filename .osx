@@ -145,6 +145,12 @@ defaults write NSGlobalDomain KeyRepeat -int 1
 # Stop iTunes from responding to the keyboard media keys
 launchctl unload -w /System/Library/LaunchAgents/com.apple.rcd.plist 2> /dev/null
 
+# Enable silent clicking 
+defaults write com.apple.AppleMultitouchTrackpad ActuationStrength -int 0
+
+# Enable three finger back gesture 
+defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerHorizSwipeGesture -int 1
+
 ###############################################################################
 # Screen                                                                      #
 ###############################################################################
@@ -248,7 +254,7 @@ defaults write com.apple.finder FXPreferredViewStyle -string "clmv"
 # defaults write com.apple.finder EmptyTrashSecurely -bool true
 
 # Show the ~/Library folder
-chflags nohidden ~/Library
+# chflags nohidden ~/Library
 
 # Remove Dropbox’s green checkmark icons in Finder
 # file=/Applications/Dropbox.app/Contents/Resources/emblem-dropbox-uptodate.icns
@@ -335,13 +341,32 @@ defaults write com.apple.dock wvous-tr-modifier -int 0
 # MenuBar                                                                     #
 ###############################################################################
 
-defaults write com.apple.systemuiserver menuExtras -array 
-"/System/Library/CoreServices/Menu Extras/AirPort.menu"
-"/System/Library/CoreServices/Menu Extras/Bluetooth.menu"
-"/System/Library/CoreServices/Menu Extras/Clock.menu" 
-"/System/Library/CoreServices/Menu Extras/Displays.menu"
-"/System/Library/CoreServices/Menu Extras/Volume.menu"
-"/System/Library/CoreServices/Menu Extras/TimeMachine.menu"
+defaults write com.apple.systemuiserver menuExtras = ( 
+  "/System/Library/CoreServices/Menu Extras/AirPort.menu"
+  "/System/Library/CoreServices/Menu Extras/Bluetooth.menu"
+  "/System/Library/CoreServices/Menu Extras/Clock.menu" 
+  "/System/Library/CoreServices/Menu Extras/Displays.menu"
+  "/System/Library/CoreServices/Menu Extras/Volume.menu"
+  "/System/Library/CoreServices/Menu Extras/TimeMachine.menu"
+)
+
+defaults write com.apple.systemuiserver "NSStatusItem Visible Siri" = 0;
+defaults write com.apple.systemuiserver "NSStatusItem Visible com.apple.menuextra.TimeMachine" = 1;
+defaults write com.apple.systemuiserver "NSStatusItem Visible com.apple.menuextra.airport" = 1;
+defaults write com.apple.systemuiserver "NSStatusItem Visible com.apple.menuextra.appleuser" = 1;
+defaults write com.apple.systemuiserver "NSStatusItem Visible com.apple.menuextra.battery" = 1;
+defaults write com.apple.systemuiserver "NSStatusItem Visible com.apple.menuextra.bluetooth" = 1;
+defaults write com.apple.systemuiserver "NSStatusItem Visible com.apple.menuextra.clock" = 1;
+defaults write com.apple.systemuiserver "NSStatusItem Visible com.apple.menuextra.volume" = 1;
+
+defaults write com.apple.systemuiserver "NSStatusItem Preferred Position Item-0" = 23;
+defaults write com.apple.systemuiserver "NSStatusItem Preferred Position com.apple.menuextra.TimeMachine" = 20455;
+defaults write com.apple.systemuiserver "NSStatusItem Preferred Position com.apple.menuextra.airport" = 364;
+defaults write com.apple.systemuiserver "NSStatusItem Preferred Position com.apple.menuextra.appleuser" = "93.5";
+defaults write com.apple.systemuiserver "NSStatusItem Preferred Position com.apple.menuextra.battery" = 283;
+defaults write com.apple.systemuiserver "NSStatusItem Preferred Position com.apple.menuextra.bluetooth" = 394;
+defaults write com.apple.systemuiserver "NSStatusItem Preferred Position com.apple.menuextra.clock" = "140.5";
+defaults write com.apple.systemuiserver "NSStatusItem Preferred Position com.apple.menuextra.volume" = 334;
 
 defaults write com.apple.menuextra.battery ShowPercent YES;
 
@@ -387,6 +412,7 @@ defaults write com.apple.Safari ShowFavoritesBar -bool false
 defaults write com.apple.Safari IncludeInternalDebugMenu -bool true
 
 # Enable the Develop menu and the Web Inspector in Safari
+defaults write com.apple.Safari.SandboxBroker ShowDevelopMenu -bool true
 defaults write com.apple.Safari IncludeDevelopMenu -bool true
 defaults write com.apple.Safari WebKitDeveloperExtrasEnabledPreferenceKey -bool true
 defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled -bool true
@@ -490,6 +516,12 @@ defaults write com.apple.ActivityMonitor ShowCategory -int 0
 # Sort Activity Monitor results by CPU usage
 defaults write com.apple.ActivityMonitor SortColumn -string "CPUUsage"
 defaults write com.apple.ActivityMonitor SortDirection -int 0
+
+###############################################################################
+# Address Book, Dashboard, iCal                                               #
+###############################################################################
+
+defaults write com.apple.iCal "display birthdays calendar" -int 0
 
 ###############################################################################
 # TextEdit                                                                    #
