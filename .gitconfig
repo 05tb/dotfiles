@@ -1,30 +1,16 @@
-# [user]
-#   name = Jeff Geerling
-#   email = geerlingguy@mac.com
-# [core]
-#   editor = vi
-#   excludesfile = ~/.gitignore
-#   autocrlf = input
-# [color]
-#   branch = auto
-#   diff = auto
-#   interactive = auto
-#   status = auto
-# [web]
-#   browser = google-chrome
-# [credential]
-#   helper = osxkeychain
-# [push]
-#   default = simple
-# [merge]
-#   tool = kdiff3
-# [difftool]
-#   prompt = false
-# [alias]
-#   c = commit
-#   ca = commit -a
-#   cm = commit -m
-#   cam = commit -am
-#   d = diff
-#   dc = diff --cached
-#   l = log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset" --abbrev-commit
+# This is Git's per-user configuration file.
+[user]
+	name = Todd Burlington
+	email = Todd.Burlington@bbc.co.uk
+[user]
+	email = 05tb@users.noreply.github.com
+	name = Todd Burlington
+[core]
+	editor = vi
+	excludesfile = ~/.gitignore_global
+	autocrlf = input
+[color]
+  branch = auto
+  diff = auto
+  interactive = auto
+  status = auto
